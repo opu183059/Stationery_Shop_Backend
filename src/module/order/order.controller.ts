@@ -12,6 +12,7 @@ const createOrder = async (req: Request, res: Response) => {
       totalPrice: givenTotalPrice,
     } = req.body;
 
+    // get the selected product from Products database
     const product = await productService.getSingleProduct(productId);
 
     if (!product || product.quantity < quantity) {
@@ -19,6 +20,7 @@ const createOrder = async (req: Request, res: Response) => {
       return;
     }
 
+    // calculate total price if the total price is not provided
     const totalPrice = givenTotalPrice
       ? givenTotalPrice
       : product.price * quantity;
@@ -30,11 +32,13 @@ const createOrder = async (req: Request, res: Response) => {
       totalPrice,
     });
 
+    const result = await orderService.createOrder(order);
+
+    // handle the product quantity and stock value after order completion
     product.quantity = product.quantity - quantity;
     product.inStock = product.quantity > 0 ? true : false;
 
     await productService.updateProduct(productId, product);
-    const result = await orderService.createOrder(order);
 
     res.json({
       message: "Order created successfully",
@@ -60,6 +64,7 @@ const getRevenue = async (req: Request, res: Response) => {
         },
       },
     ]);
+
     res.json({
       message: "Revenue calculated successfully",
       status: true,
