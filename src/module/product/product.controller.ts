@@ -51,8 +51,6 @@ const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
     const result = await productService.getSingleProduct(productId);
-    // if (!result)
-    //   return res.json({ message: "Product not found", status: false });
     res.json({
       message: "Products retrieved successfully",
       status: true,
@@ -112,17 +110,3 @@ export const productController = {
   updateProduct,
   deleteProduct,
 };
-
-// try{
-//     res.json({
-//         message: "Successfully",
-//         success: true,
-//       data: result,
-//       });
-// }catch(error){
-//     res.json({
-//         message: "Product Creation failed",
-//         success: false,
-//         error,
-//       });
-// }
