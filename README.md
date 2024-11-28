@@ -1,6 +1,6 @@
 # Stationary Shop Backend
 
-Live URL: [liveLink](https://choosealicense.com/licenses/mit/)
+Live URL: [https://stationery-shop-backend-black.vercel.app/](https://stationery-shop-backend-black.vercel.app/)
 
 ## Features
 
