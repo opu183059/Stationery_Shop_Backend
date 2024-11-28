@@ -21,7 +21,18 @@ const createProduct = async (req: Request, res: Response) => {
 
 const getProduct = async (req: Request, res: Response) => {
   try {
-    const result = await productService.getProduct();
+    const searchTerm = req.params.query;
+    const query: string | {} = searchTerm
+      ? {
+          $or: [
+            { name: { $regex: searchTerm, $options: "i" } },
+            { brand: { $regex: searchTerm, $options: "i" } },
+            { category: { $regex: searchTerm, $options: "i" } },
+          ],
+        }
+      : {};
+
+    const result = await productService.getProduct(query);
     res.json({
       message: "Products retrieved successfully",
       status: true,

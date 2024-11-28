@@ -6,8 +6,8 @@ const createProduct = async (payload: IProduct): Promise<IProduct> => {
   return result;
 };
 
-const getProduct = async () => {
-  const result = await Product.find();
+const getProduct = async (query: any) => {
+  const result = await Product.find(query);
   return result;
 };
 
