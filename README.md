@@ -25,6 +25,10 @@ Live URL: [https://stationery-shop-backend-black.vercel.app/](https://stationery
 To run the project just clone and run this comand in the terminal
 
 ```bash
+  npm run install
+```
+
+```bash
   npm run dev
 ```
 
